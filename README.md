@@ -76,11 +76,9 @@ Protocol Type	TCP
 Login Attempts	3
 Session Duration	120.5
 Encryption Used	TLS
-📜 License
-MIT License - See LICENSE for details.
 
 👨‍💻 Author
-[Your Name] - GitHub
+[Vivek Chaudhari] - GitHub
 
 Warning
 The ML model is for demonstration purposes only. Not production-grade security.
