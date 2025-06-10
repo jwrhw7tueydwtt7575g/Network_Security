@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuard | Threat Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    <div class="container">
+        <header>
+            <h1 class="glitch" data-text="CyberGuard">CyberGuard</h1>
+            <p class="subtitle">Advanced Threat Detection System</p>
+        </header>
+
+        <main>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-btn red"></span>
+                        <span class="terminal-btn yellow"></span>
+                        <span class="terminal-btn green"></span>
+                    </div>
+                    <span class="terminal-title">threat_detection.exe</span>
+                </div>
+                <div class="terminal-body">
+                    <form action="/predict" method="post" class="hacker-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="network_packet_size">Packet Size</label>
+                                <input type="number" id="network_packet_size" name="network_packet_size" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="protocol_type">Protocol Type</label>
+                                <select id="protocol_type" name="protocol_type" required>
+                                    <option value="">Select</option>
+                                    <option value="TCP">TCP</option>
+                                    <option value="UDP">UDP</option>
+                                    <option value="ICMP">ICMP</option>
+                                    <option value="HTTP">HTTP</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="login_attempts">Login Attempts</label>
+                                <input type="number" id="login_attempts" name="login_attempts" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="session_duration">Session Duration</label>
+                                <input type="number" step="0.01" id="session_duration" name="session_duration" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="encryption_used">Encryption</label>
+                                <select id="encryption_used" name="encryption_used" required>
+                                    <option value="">Select</option>
+                                    <option value="SSL">SSL</option>
+                                    <option value="TLS">TLS</option>
+                                    <option value="AES">AES</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ip_reputation_score">IP Reputation</label>
+                                <input type="number" step="0.01" id="ip_reputation_score" name="ip_reputation_score" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="failed_logins">Failed Logins</label>
+                                <input type="number" id="failed_logins" name="failed_logins" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="browser_type">Browser Type</label>
+                                <select id="browser_type" name="browser_type" required>
+                                    <option value="">Select</option>
+                                    <option value="Chrome">Chrome</option>
+                                    <option value="Firefox">Firefox</option>
+                                    <option value="Safari">Safari</option>
+                                    <option value="Edge">Edge</option>
+                                    <option value="Unknown">Unknown</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="unusual_time_access">Unusual Time Access</label>
+                                <select id="unusual_time_access" name="unusual_time_access" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="hacker-btn">
+                            <span class="btn-text">ANALYZE TRAFFIC</span>
+                            <span class="btn-lights">
+                                <span class="light red"></span>
+                                <span class="light yellow"></span>
+                                <span class="light green"></span>
+                            </span>
+                        </button>
+                    </form>
+
+                    {% if result %}
+                    <div class="result-container">
+                        <div class="scan-animation"></div>
+                        <div class="result {{ 'malicious' if 'Malicious' in result else 'normal' }}">
+                            <span class="result-icon">{{ '⚠️' if 'Malicious' in result else '✓' }}</span>
+                            <span class="result-text">{{ result }}</span>
+                        </div>
+                        <div class="scan-line"></div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="typing-text">Initializing CyberGuard Defense Matrix... System Online</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
